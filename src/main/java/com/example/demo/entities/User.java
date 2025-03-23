@@ -27,7 +27,6 @@ public class User implements Serializable {
 	private String name;
 	private String email;
 	private String phone;
-
 	private String password;
 
 	// We use the @JsonIgnore annotation to specify a method or field that should be
