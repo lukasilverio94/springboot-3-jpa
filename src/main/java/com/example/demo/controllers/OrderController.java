@@ -21,8 +21,8 @@ public class OrderController {
 
 	@GetMapping
 	public ResponseEntity<List<Order>> findAll() {
-		List<Order> OrderList = service.findAll();
-		return ResponseEntity.ok().body(OrderList);
+		List<Order> list = service.findAll();
+		return ResponseEntity.ok().body(list);
 	}
 
 	@GetMapping(value = "/{id}")
