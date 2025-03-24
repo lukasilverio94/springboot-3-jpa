@@ -33,7 +33,8 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    @JsonIgnore // we ignore here because we don't have an atribute `orders`. We are using a getOrder here instead
+    @JsonIgnore // we ignore here because we don't have an atribute `orders`. We are using a
+                // getOrder here instead
     public Order getOrder() {
         return id.getOrder();
     }
