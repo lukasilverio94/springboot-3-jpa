@@ -13,6 +13,8 @@ import com.example.demo.repositories.UserRepository;
 import com.example.demo.services.exceptions.DatabaseException;
 import com.example.demo.services.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserService {
 
@@ -44,11 +46,16 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
-        // getReferenceById -> Prepare the object, but still don't grab from database,
-        // more efficient than (getById)
-        User entity = repository.getReferenceById(id);
-        updateData(entity, obj);
-        return repository.save(entity);
+        try {
+            // getReferenceById -> Prepare the object, but still don't grab from database,
+            // more efficient than (getById)
+            User entity = repository.getReferenceById(id);
+            updateData(entity, obj);
+            return repository.save(entity);
+        } catch (EntityNotFoundException ex) {
+            throw new ResourceNotFoundException(id);
+
+        }
 
     }
 
